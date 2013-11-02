@@ -4,6 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
@@ -21,7 +22,6 @@
         android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
             android:name="com.example.snapcam.MainActivity"
-            android:configChanges="orientation"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
