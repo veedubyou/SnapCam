@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
 	
 	    setCameraDisplayOrientation(this, cameraId, mCamera);
 	
+	    SpeechRecognizer r = new SpeechRecognizer(this);
 	}
 
 	@Override
