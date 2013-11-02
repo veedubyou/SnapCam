@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 	
 	public void snapPicture()
 	{
-		
+		//
 	}
 	
 	public void snapTimer(int seconds)
