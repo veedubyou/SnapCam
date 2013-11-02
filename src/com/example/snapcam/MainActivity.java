@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		try{
-			
+			releaseCameraAndPreview();
 			
 			// Create an instance of Camera
 			mCamera = Camera.open(cameraId); // attempt to get a Camera instance
@@ -56,14 +56,25 @@ public class MainActivity extends Activity {
 		mCamera = null;
 	}
 	
+	private void releaseCameraAndPreview(){
+	//helper function to release Camera and Preview
+		if(mPreview != null){
+			mPreview.clearCamera();
+			mPreview = null;
+		}
+		if(mCamera != null){
+			mCamera.release();
+			mCamera=null;
+		}
+	}
+	
 	public void onConfigurationChanged(Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
 		setCameraDisplayOrientation(this, cameraId, mCamera);
 	}
 	
-	//test comment
-	//test2
+
 	public void setCameraDisplayOrientation(Activity activity,
 	         int cameraId, android.hardware.Camera camera) {
 	     android.hardware.Camera.CameraInfo info =
