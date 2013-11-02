@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	//test comment
 	public void switchPortrait()
 	{
 	
