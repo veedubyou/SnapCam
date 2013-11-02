@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
 	
 	public void startListening()
 	{
-		
+		//some comments here
 	}
 	
 	public void snapPicture()
