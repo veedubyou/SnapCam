@@ -20,8 +20,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		try{
-			
-			
 			// Create an instance of Camera
 			mCamera = Camera.open(cameraId); // attempt to get a Camera instance
 	    }
