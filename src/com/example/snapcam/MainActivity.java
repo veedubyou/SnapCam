@@ -37,4 +37,39 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	public void switchPortrait()
+	{
+	
+	}
+	
+	public void switchLandscape()
+	{
+		
+	}
+	
+	public void startListening()
+	{
+		
+	}
+	
+	public void snapPicture()
+	{
+		
+	}
+	
+	public void snapTimer(int seconds)
+	{
+		
+	}
+	
+	public void toggleFlash(boolean on)
+	{
+		
+	}
+	
+	public void toggleCamera(boolean front)
+	{
+		
+	}
 }
