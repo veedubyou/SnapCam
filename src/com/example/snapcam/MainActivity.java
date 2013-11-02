@@ -1,8 +1,10 @@
 package com.example.snapcam;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.Surface;
 import android.widget.FrameLayout;
@@ -18,19 +20,24 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		try{
+			
+			
 			// Create an instance of Camera
 			mCamera = Camera.open(cameraId); // attempt to get a Camera instance
 	    }
 	    catch (Exception e){
 	        // TODO: return error message
+	    	Log.e(getString(R.string.app_name), "failed to open Camera");
+	    	e.printStackTrace();
 	    };
-	    
-	    setCameraDisplayOrientation(this, cameraId, mCamera);
 
         // Create our Preview view and set it as the content of our activity.
         mPreview = new CameraPreview(this, mCamera);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        preview.addView(mPreview);		
+        preview.addView(mPreview);			    
+	
+	    setCameraDisplayOrientation(this, cameraId, mCamera);
+	
 	}
 
 	@Override
@@ -38,6 +45,21 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onStop()
+	{
+		mPreview.clearCamera();
+		mCamera.release();
+		mPreview = null;
+		mCamera = null;
+	}
+	
+	public void onConfigurationChanged(Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		setCameraDisplayOrientation(this, cameraId, mCamera);
 	}
 	
 	//test comment
