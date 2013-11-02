@@ -1,9 +1,12 @@
 package com.example.snapcam;
 
 import java.io.IOException;
+import java.util.List;
 
 import android.content.Context;
 import android.hardware.Camera;
+import android.hardware.Camera.Size;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -60,6 +63,35 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
         // set preview size and make any resize, rotate or
         // reformatting changes here
+        
+      //get the parameters object from the Camera
+        Camera.Parameters parameters = mCamera.getParameters();
+        
+        //get Supported Preview Sizes
+        
+        
+        List<Size> localSizes=parameters.getSupportedPreviewSizes();
+        
+        //save the width and height we need
+        //height needs to be recalculated to include UI Controls
+        
+        int previewWidth = localSizes.get(0).width;
+        int previewHeight = localSizes.get(0).height - 100;
+        
+        
+        
+        /*for(int i = 0; i < localSizes.size(); i++){
+        	Log.d("CAMERA PREVIEW", "Height: " + localSizes.get(i).height);
+        	Log.d("CAMERA PREVIEW", "Width: " + localSizes.get(i).width);
+        }*/
+        
+        
+        
+        //set the Preview Size to the correct width and height
+        //parameters.setPreviewSize(previewWidth, previewHeight);
+        //set our camera 
+        //mCamera.setParameters(parameters);
+        
 
         // start preview with new settings
         try {
