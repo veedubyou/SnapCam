@@ -10,6 +10,8 @@ import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.os.Environment;
+import android.util.Log;
 import edu.cmu.pocketsphinx.Config;
 import edu.cmu.pocketsphinx.Decoder;
 
@@ -34,22 +36,18 @@ public class SpeechRecognizer {
 
 		Config config = Decoder.defaultConfig();
 
-		try {
-			File modelsDir = syncAssets(context, "models");
-			File root = modelsDir.getParentFile();
+		File sdCard = Environment.getExternalStorageDirectory();
+		File dataDir = new File(sdCard, "data");
+		File modelsDir = new File(dataDir, "models");
 
-			config.setString("-jsgf", joinPath(modelsDir, "dialog.gram"));
-			config.setString("-hmm", joinPath(modelsDir, "acoustic"));
+		config.setString("-jsgf", joinPath(modelsDir, "dialog.gram"));
+		config.setString("-hmm", joinPath(modelsDir, "acoustic"));
 
-			config.setString("-rawlogdir", root.getPath());
-			config.setFloat("-samprate", SAMPLE_RATE);
-			config.setInt("-maxhmmpf", 10000);
-			config.setBoolean("-backtrace", true);
-			config.setBoolean("-bestpath", false);
-			config.setBoolean("-remove_noise", false);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		config.setFloat("-samprate", SAMPLE_RATE);
+		config.setInt("-maxhmmpf", 10000);
+		config.setBoolean("-backtrace", true);
+		config.setBoolean("-bestpath", false);
+		config.setBoolean("-remove_noise", false);
 
 		decoder = new Decoder(config);
 	}
