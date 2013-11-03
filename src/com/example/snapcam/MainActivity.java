@@ -7,17 +7,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.Surface;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 public class MainActivity extends Activity {
 	private Camera mCamera;
     private CameraPreview mPreview;
-    private static final int cameraId = 1;
+    private static final int cameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//Hide the status bar 
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		try{
 			releaseCameraAndPreview();
@@ -50,6 +54,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStop()
 	{
+		super.onStop();
 		mPreview.clearCamera();
 		mCamera.release();
 		mPreview = null;

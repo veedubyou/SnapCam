@@ -76,21 +76,23 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         //height needs to be recalculated to include UI Controls
         
         int previewWidth = localSizes.get(0).width;
-        int previewHeight = localSizes.get(0).height - 100;
+        int previewHeight = localSizes.get(0).height;
         
+        Log.d("CAMERAPREVIEW", "Surface Height: " + getHeight());
+        Log.d("CAMERAPREVIEW", "Surface Width: " + getWidth());
         
-        
-        /*for(int i = 0; i < localSizes.size(); i++){
-        	Log.d("CAMERA PREVIEW", "Height: " + localSizes.get(i).height);
-        	Log.d("CAMERA PREVIEW", "Width: " + localSizes.get(i).width);
-        }*/
+        for(int i = 0; i < localSizes.size(); i++){
+        	Log.d("CAMERAPREVIEW", "Height: " + localSizes.get(i).height);
+        	Log.d("CAMERAPREVIEW", "Width: " + localSizes.get(i).width);
+        }
         
         
         
         //set the Preview Size to the correct width and height
-        //parameters.setPreviewSize(previewWidth, previewHeight);
+        parameters.setPreviewSize(previewWidth, previewHeight);
+        requestLayout();
         //set our camera 
-        //mCamera.setParameters(parameters);
+        mCamera.setParameters(parameters);
         
 
         // start preview with new settings
